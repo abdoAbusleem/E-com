@@ -21,7 +21,7 @@ router.post('/create', createProduct);
 
 router.get('/products', productList);
 
-router.get('/:id', getSingleProduct);
+router.get('/singleProduct/:id', getSingleProduct);
 
 router.patch('/update/:id', updateProduct);
 
