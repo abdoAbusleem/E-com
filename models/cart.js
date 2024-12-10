@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
-const orderStatus = require("../Enums/orderStatus");
 
-const OrderSchema = mongoose.Schema({
+const cartSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    required: true,
+    required: [true, "Order must be belong to user"],
   },
   items: [
     {
@@ -20,17 +19,11 @@ const OrderSchema = mongoose.Schema({
       },
     },
   ],
-  status: {
-    type: String,
-    enum: [orderStatus.pending, orderStatus.completed, orderStatus.active],
-    default: "pending",
-  },
   totalPrice: {
     type: Number,
     required: true,
     default: 0,
   },
-  activationDate: { type: Date, default: null },
 });
 
-module.exports = mongoose.model("Order", OrderSchema);
+module.exports = mongoose.model("Cart", cartSchema);
